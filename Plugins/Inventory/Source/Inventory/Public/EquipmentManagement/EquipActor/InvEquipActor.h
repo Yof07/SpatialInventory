@@ -25,5 +25,5 @@ protected:
 
 private:
 	UPROPERTY(EditAnywhere, Category="Inventory")
-	FGameplayTag EquipmentType
+	FGameplayTag EquipmentType;
 };
