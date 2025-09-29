@@ -56,22 +56,6 @@ public:
 	
 	UFUNCTION(Client, Reliable)
 	void Client_OnOwnerViewEquipped(UInvInventoryItem* ItemToEquip, UInvInventoryItem* ItemToUnequip);
-
-	// /** 装备穿戴预测入口 */
-	// UFUNCTION(BlueprintCallable)
-	// void InitiateEquipPrediction(UInvInventoryItem* ItemToEquip, const FGameplayTag& SlotTag);
-	//
-	// /** 装备卸下预测入口 */
-	// UFUNCTION(BlueprintCallable)
-	// void InitiateUnequipPrediction(UInvInventoryItem* ItemToUnequip, const FGameplayTag& SlotTag);
-	//
-	// /** 装备穿戴请求 */
-	// UFUNCTION(Server, Reliable)
-	// void Server_RequestEquipAction(UInvInventoryItem* ItemToEquip, uint32 ClientSequence, const FGameplayTag& SlotTag);
-	//
-	// /** 装备穿戴确认 */
-	// UFUNCTION(Client, Reliable)
-	// void Client_AckEquipAction(uint32 ClientSequence, UInvInventoryItem* Item, bool bSuccess, const FGameplayTag& SlotTag);
 	
 	void AddRepSubObj(UObject* SubObj);
 	
@@ -97,23 +81,6 @@ private:
 	void OpenInventoryMenu();
 
 	void CloseInventoryMenu();
-
-	// AInvEquipActor* SpawnPredictedEquipActorOnProxy(UInvInventoryItem* Item, uint32 ClientSequence, const FGameplayTag& SlotTag);
-	//
-	// AInvEquipActor* SpawnPredictedEquipActorOnCharacter(UInvInventoryItem* Item, uint32 ClientSequence, const FGameplayTag& SlotTag);
-	//
-	// AInvEquipActor* SpawnPredictedEquipActorForPlayer(APawn* PlayerPawn, UInvInventoryItem* Item, const FGameplayTag& SlotTag);
-	//
-	// bool ValidateItemBelongsToController(UInvInventoryItem* Item, APlayerController* PC) const;
-	//
-	// bool ValidateEquipConditions(UInvInventoryItem* Item, APlayerController* PC, const FGameplayTag& SlotTag) const;
-	//
-	// virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	//
-	// void RollbackLocalPrediction(uint32 ClientSequence);
-	//
-	// void RequestServerInventorySync();
-	
 public:
 	FInventoryItemChange OnItemAdded;
 	FInventoryItemChange OnItemRemoved;
@@ -154,18 +121,4 @@ private:
 	
 	UPROPERTY(EditAnywhere, Category = "Inventory")
 	float RelativeSpawnElevation = 70.f;
-
-	// /** client-seq, entry */
-	// UPROPERTY()
-	// TMap<uint32, FPendingEquipEntry> PendingEquips;
-	//
-	// /** 预测超时时间 */
-	// UPROPERTY(EditDefaultsOnly, Category = "Inventory|Prediction")
-	// float PendingTimeout = 5.0f;
-	//
-	// uint32 NextClientSequence = 1; // client-only, runtime only
-	//
-	// TMap<uint32, TArray<TWeakObjectPtr<AInvEquipActor>>> PredictedActorRegistry; // client-only, runtime only
-	//
-	// TMap<TWeakObjectPtr<UInvInventoryItem>, TWeakObjectPtr<AInvEquipActor>> ServerSpawnedEquipActorMap; // server-only
 };

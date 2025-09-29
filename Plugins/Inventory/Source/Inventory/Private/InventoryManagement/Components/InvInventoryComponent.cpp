@@ -193,20 +193,6 @@ void UInvInventoryComponent::Server_EquipSlotClicked_Implementation(UInvInventor
 	}
 }
 
-
-
-// void UInvInventoryComponent::Multicast_EquipSlotClicked_Implementation(UInvInventoryItem* ItemToEquip,
-// 	UInvInventoryItem* ItemToUnequip)
-// {
-// 	// Equipment Component 监听响应
-//
-// 	if (!OwningController->HasAuthority())
-// 		return;
-// 	
-// 	OnItemEquipped.Broadcast(ItemToEquip);
-// 	OnItemUnequipped.Broadcast(ItemToUnequip);
-// }
-
 void UInvInventoryComponent::Client_OnOwnerViewEquipped_Implementation(UInvInventoryItem* ItemToEquip, UInvInventoryItem* ItemToUnequip)
 {
 	// 如果组件的 owner 不是本地 controller，那么跳过（防御式）
@@ -222,48 +208,6 @@ void UInvInventoryComponent::Client_OnOwnerViewEquipped_Implementation(UInvInven
 	OnItemEquipped_OwnerView.Broadcast(ItemToEquip);
 	OnItemUnequipped_OwnerView.Broadcast(ItemToUnequip);
 }
-
-// void UInvInventoryComponent::InitiateEquipPrediction(UInvInventoryItem* ItemToEquip, const FGameplayTag& SlotTag)
-// {
-// 	if (!IsValid(ItemToEquip))
-// 		return;
-// 	
-// 	uint32 Seq = NextClientSequence++;
-// 	FPendingEquipEntry Entry;
-// 	Entry.ClientSequence = Seq;
-// 	Entry.SlotTag = SlotTag;
-// 	Entry.Item = ItemToEquip;
-// 	Entry.TimeStamp = GetWorld() ? GetWorld()->GetTimeSeconds() : 0.0;
-// 	
-// 	Entry.PredictedProxyActor = SpawnPredictedEquipActorOnProxy(ItemToEquip, Seq, SlotTag);
-// 	Entry.PredictedCharacterActor = SpawnPredictedEquipActorOnCharacter(ItemToEquip, Seq, SlotTag);
-// 	
-// 	PendingEquips.Add(Seq, Entry);
-// 	
-// 	// ProxyMesh穿戴装备
-// 	OnItemEquipped_OwnerView.Broadcast(ItemToEquip);
-// 	
-// 	
-// 	// 
-// 	Server_RequestEquipAction(ItemToEquip, Seq, SlotTag);
-// }
-//
-// void UInvInventoryComponent::InitiateUnequipPrediction(UInvInventoryItem* ItemToUnequip, const FGameplayTag& SlotTag)
-// {
-// 	
-// }
-//
-// void UInvInventoryComponent::Server_RequestEquipAction_Implementation(UInvInventoryItem* ItemToEquip, uint32 ClientSequence,
-//                                                                 const FGameplayTag& SlotTag)
-// {	
-// 	
-// }	
-// 	
-// void UInvInventoryComponent::Client_AckEquipAction_Implementation(uint32 ClientSequence, UInvInventoryItem* Item,
-// 	bool bSuccess, const FGameplayTag& SlotTag)
-// {	
-// 	
-// }
 
 void UInvInventoryComponent::AddRepSubObj(UObject* SubObj)
 {
@@ -341,53 +285,6 @@ void UInvInventoryComponent::CloseInventoryMenu()
 	OwningController->SetInputMode(InputMode);
 	OwningController->SetShowMouseCursor(false);
 }
-
-// AInvEquipActor* UInvInventoryComponent::SpawnPredictedEquipActorOnProxy(UInvInventoryItem* Item, uint32 ClientSequence,
-// 	const FGameplayTag& SlotTag)
-// {
-// }
-//
-// AInvEquipActor* UInvInventoryComponent::SpawnPredictedEquipActorOnCharacter(UInvInventoryItem* Item,
-// 	uint32 ClientSequence, const FGameplayTag& SlotTag)
-// {
-// }
-//
-// AInvEquipActor* UInvInventoryComponent::SpawnPredictedEquipActorForPlayer(APawn* PlayerPawn, UInvInventoryItem* Item,
-// 	const FGameplayTag& SlotTag)
-// {
-// }
-//
-// bool UInvInventoryComponent::ValidateItemBelongsToController(UInvInventoryItem* Item, APlayerController* PC) const
-// {
-// }
-//
-// bool UInvInventoryComponent::ValidateEquipConditions(UInvInventoryItem* Item, APlayerController* PC,
-// 	const FGameplayTag& SlotTag) const
-// {
-// }
-//
-// void UInvInventoryComponent::TickComponent(float DeltaTime, enum ELevelTick TickType,
-//                                            FActorComponentTickFunction* ThisTickFunction)
-// {
-// 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-// }
-//
-// void UInvInventoryComponent::RollbackLocalPrediction(uint32 ClientSequence)
-// {
-// }
-//
-// void UInvInventoryComponent::RequestServerInventorySync()
-// {
-// }
-//
-//
-// void UInvInventoryComponent::DestroyPredictedActorsBySequence(uint32 ClientSequence)
-// {
-// }
-//
-// void UInvInventoryComponent::RollbackLocalEquip(uint32 ClientSequence)
-// {
-// }
 
 
 
